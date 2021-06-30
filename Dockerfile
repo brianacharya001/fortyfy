@@ -11,10 +11,10 @@ COPY . .
 RUN yum install wget -y
 RUN yum install java-1.8.0-openjdk-devel -y
 RUN useradd -m -U -d /opt/tomcat -s /bin/false tomcat
-RUN wget https://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.30/bin/apache-tomcat-9.0.30.tar.gz
-RUN tar -xvf apache-tomcat-9.0.30.tar.gz
-RUN mv apache-tomcat-9.0.30 /opt/tomcat
-RUN ln -s /opt/tomcat/apache-tomcat-9.0.30 /opt/tomcat/latest
+RUN wget https://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz
+RUN tar -xvf apache-tomcat-9.0.48.tar.gz
+RUN mv apache-tomcat-9.0.48 /opt/tomcat
+RUN ln -s /opt/tomcat/apache-tomcat-9.0.48 /opt/tomcat/latest
 RUN chown -R tomcat: /opt/tomcat
 RUN chmod +x /opt/tomcat/latest/bin/*.sh
 RUN cp tomcat.service /etc/systemd/system/tomcat.service
