@@ -8,6 +8,10 @@ COPY . .
 
 # tomcat setup from here https://linuxize.com/post/how-to-install-tomcat-9-on-centos-7/
 # RUN yum update -y
+RUN yum install ca-certificates
+RUN update-ca-trust force-enable
+RUN cp foo.crt /etc/pki/ca-trust/source/anchors/
+RUN update-ca-trust extract
 RUN yum install wget -y
 RUN yum install java-1.8.0-openjdk-devel -y
 RUN useradd -m -U -d /opt/tomcat -s /bin/false tomcat
