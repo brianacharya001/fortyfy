@@ -1,5 +1,5 @@
-FROM docker.io/library/centos:latest
-
+#FROM docker.io/library/centos:latest
+FROM quay.io/centos/centos
 # work in temp for the install
 WORKDIR /tmp
 
