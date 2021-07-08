@@ -43,7 +43,8 @@ EXPOSE 8080
 EXPOSE 8009
 
 # USER tomcat
-
+RUN chown -R 1000840000:1000840000 /opt/tomcat
+USER 1000840000
 # from unit-d file https://linuxize.com/post/how-to-install-tomcat-9-on-centos-7/
 ENV JAVA_HOME /usr/lib/jvm/jre
 ENV JAVA_OPTS -Djava.security.egd=file:///dev/urandom
