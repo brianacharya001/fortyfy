@@ -26,6 +26,8 @@ RUN cp tomcat.service /etc/systemd/system/tomcat.service
 RUN yum install -y unzip
 
 RUN cp mysql-connector-java-8.0.19.jar /opt/tomcat/latest/lib/mysql-connector-java-8.0.19.jar
+# added from nexux
+RUN wget http://nexus3-openshift-operators.apps.vapo-ppd.va.gov/#browse/browse:vapo:vapo%2FFortify_SSC_Server_20.2.0.zip
 RUN unzip -o Fortify_SSC_Server_20.2.0.zip
 RUN unzip -o Fortify_20.2.0_Server_WAR_Tomcat.zip
 RUN mv ssc.war /opt/tomcat/latest/webapps
