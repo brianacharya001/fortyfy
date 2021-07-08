@@ -31,6 +31,7 @@ RUN wget --user=admin  --password=#Newyear2065# "http://nexus3-openshift-operato
 # RUN wget http://nexus3-openshift-operators.apps.vapo-ppd.va.gov/#browse/browse:vapo:vapo%2FFortify_SSC_Server_20.2.0.zip
 RUN unzip -o Fortify_SSC_Server_20.2.0.zip
 RUN unzip -o Fortify_20.2.0_Server_WAR_Tomcat.zip
+RUN wget --user=admin  --password=#Newyear2065# http://nexus3-openshift-operators.apps.vapo-ppd.va.gov/repository/vapo/vapo/vapo/ssc.war
 RUN mv ssc.war /opt/tomcat/latest/webapps
 RUN rm -rf ./*
 
