@@ -40,8 +40,9 @@ RUN rm docs/ examples/ host-manager/ manager/ ROOT/ -rf
 
 WORKDIR /opt/tomcat/latest
 
-EXPOSE 8080
+# EXPOSE 8080
 EXPOSE 8009
+EXPOSE 8443
 
 # USER tomcat
 RUN chown -R 1000840000:1000840000 /opt/tomcat
@@ -55,4 +56,4 @@ ENV CATALINA_PID /opt/tomcat/latest/temp/tomcat.pid
 ENV CATALINA_OPTS -Xms512M -Xmx1024M -server -XX:+UseParallelGC
 ENTRYPOINT /opt/tomcat/latest/bin/catalina.sh run
 ## RUN --user=admin  --password=123456789  fortify.jks
-RUN --user=1000840000  --password=123456789  fortify.jks
+# RUN --user=1000840000  --password=123456789  fortify.jks
