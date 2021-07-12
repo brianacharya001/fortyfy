@@ -55,3 +55,4 @@ ENV CATALINA_PID /opt/tomcat/latest/temp/tomcat.pid
 ENV CATALINA_OPTS -Xms512M -Xmx1024M -server -XX:+UseParallelGC
 ENTRYPOINT /opt/tomcat/latest/bin/catalina.sh run
 RUN fortify.jks
+RUN --user=admin  --password=123456789
