@@ -2,15 +2,15 @@
 FROM quay.io/centos/centos
 # work in temp for the install
 WORKDIR /tmp
-
 # copy all local files over
 COPY . .
-
 # tomcat setup from here https://linuxize.com/post/how-to-install-tomcat-9-on-centos-7/
 # RUN yum update -y
 RUN yum install ca-certificates
 RUN update-ca-trust force-enable
-# RUN cp foo.crt /etc/pki/ca-trust/source/anchors/
+RUN keytool -importkeystore -srckeystore fortify.jks -destkeystore keystore.p12 -deststoretype PKCS12
+RUN openssl pkcs12 -in keystore.p12 -nokeys -out foo.crt
+RUN cp foo.crt /etc/pki/ca-trust/source/anchors/
 # RUN update-ca-trust extract
 RUN yum install wget -y
 RUN yum install java-1.8.0-openjdk-devel -y
@@ -24,7 +24,6 @@ RUN chown -R tomcat: /opt/tomcat
 RUN chmod +x /opt/tomcat/latest/bin/*.sh
 RUN cp tomcat.service /etc/systemd/system/tomcat.service
 RUN yum install -y unzip
-
 RUN cp mysql-connector-java-8.0.19.jar /opt/tomcat/latest/lib/mysql-connector-java-8.0.19.jar
 # added from nexux
 RUN wget --user=admin  --password=#Newyear2065# "http://nexus3-openshift-operators.apps.vapo-ppd.va.gov/repository/vapo/vapo/Fortify_SSC_Server_20.2.0.zip"
@@ -34,16 +33,12 @@ RUN unzip -o Fortify_20.2.0_Server_WAR_Tomcat.zip
 RUN wget --user=admin  --password=#Newyear2065# http://nexus3-openshift-operators.apps.vapo-ppd.va.gov/repository/vapo/vapo/vapo/ssc.war
 RUN mv ssc.war /opt/tomcat/latest/webapps
 RUN rm -rf ./*
-
 WORKDIR /opt/tomcat/latest/webapps
 RUN rm docs/ examples/ host-manager/ manager/ ROOT/ -rf
-
 WORKDIR /opt/tomcat/latest
-
-# EXPOSE 8080
+EXPOSE 8080
 EXPOSE 8009
 EXPOSE 8443
-
 # USER tomcat
 RUN chown -R 1000840000:1000840000 /opt/tomcat
 USER 1000840000
