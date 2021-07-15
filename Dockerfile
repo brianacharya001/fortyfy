@@ -11,12 +11,12 @@ COPY . .
 RUN yum install ca-certificates
 RUN update-ca-trust force-enable
 # RUN cp foo.crt /etc/pki/ca-trust/source/anchors/
-RUN keytool -importkeystore -srckeystore fortify.jks -destkeystore keystore.p12 -deststoretype PKCS12
-RUN openssl pkcs12 -in keystore.p12 -nokeys -out foo.crt
-RUN cp foo.crt /etc/pki/ca-trust/source/anchors/
 # RUN update-ca-trust extract
 RUN yum install wget -y
 RUN yum install java-1.8.0-openjdk-devel -y
+RUN keytool -importkeystore -srckeystore fortify.jks -destkeystore keystore.p12 -deststoretype PKCS12
+RUN openssl pkcs12 -in keystore.p12 -nokeys -out foo.crt
+RUN cp foo.crt /etc/pki/ca-trust/source/anchors/
 RUN useradd -m -U -d /opt/tomcat -s /bin/false tomcat
 # RUN wget https://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz
 #RUN wget https://mirrors.ocf.berkeley.edu/apache/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz
