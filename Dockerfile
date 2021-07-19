@@ -18,7 +18,7 @@ RUN yum install openssl -y
 # RUN keytool -importkeystore -srckeystore fortify.jks -destkeystore keystore.p12 -deststoretype PKCS12 -keypass 123456789 -storepass 123456789
 RUN keytool -importkeystore -srckeystore fortify.jks -destkeystore keystore.p12 -deststoretype PKCS12 -keypass 123456789 -srcstorepass 123456789 -deststorepass 123456789
 # RUN openssl pkcs12 -in keystore.p12 -nokeys -out foo.crt
-RUN openssl pkcs12 -in keystore.p12 -nokeys -out foo.crt passin pass:123456789 -passout pass:123456789
+RUN openssl pkcs12 -in keystore.p12 -nokeys -out foo.crt -passin pass:123456789 -passout pass:123456789
 RUN cp foo.crt /etc/pki/ca-trust/source/anchors/passin 
 RUN useradd -m -U -d /opt/tomcat -s /bin/false tomcat
 # RUN wget https://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz
