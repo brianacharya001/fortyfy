@@ -15,7 +15,7 @@ RUN update-ca-trust force-enable
 RUN yum install wget -y
 RUN yum install java-1.8.0-openjdk-devel -y
 RUN yum install openssl -y
-RUN keytool -importkeystore -srckeystore fortify.jks -destkeystore keystore.p12 -deststoretype PKCS12 -keypass 123456789 -storepass 123456789
+RUN keytool -importkeystore -srckeystore fortify.jks -destkeystore keystore.p12 -deststoretype PKCS12 -keypass 123456789 -storepass changeit
 RUN openssl pkcs12 -in keystore.p12 -nokeys -out foo.crt
 RUN cp foo.crt /etc/pki/ca-trust/source/anchors/
 RUN useradd -m -U -d /opt/tomcat -s /bin/false tomcat
