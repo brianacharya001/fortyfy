@@ -34,10 +34,9 @@ RUN yum install -y unzip
 RUN cp mysql-connector-java-8.0.19.jar /opt/tomcat/latest/lib/mysql-connector-java-8.0.19.jar
 # added from nexux
 RUN wget --user=admin  --password=-------"http://nexus3-openshift-operators.apps.vapo-ppd.va.gov/repository/vapo/vapo/Fortify_SSC_Server_20.2.0.zip"
-# RUN wget http://nexus3-openshift-operators.apps.vapo-ppd.va.gov/#browse/browse:vapo:vapo%2FFortify_SSC_Server_20.2.0.zip
 RUN unzip -o Fortify_SSC_Server_20.2.0.zip
 RUN unzip -o Fortify_20.2.0_Server_WAR_Tomcat.zip
-RUN wget --user=admin  --password=------ http://nexus3-openshift-operators.apps.vapo-ppd.va.gov/repository/vapo/vapo/vapo/ssc.war
+RUN wget --user=admin  --password=------ http://nexus3-openshift-operators./ssc.war
 RUN mv ssc.war /opt/tomcat/latest/webapps
 RUN rm -rf ./*
 
